@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="CovidCorpus.Views.OnboardingPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:CovidCorpus.CustomControls"
+             BackgroundColor="{StaticResource ColorWhiteSmoke}"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true"
+             >
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="5.5*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0,20,0,0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Unite&#10;Against" Style="{StaticResource LabelStyle}" HorizontalTextAlignment="End" FontSize="Small" Margin="20,0" TextColor="Black" FontAttributes="Bold"/>
+                <Label Text="Covid-19" Style="{StaticResource LabelStyle}" BackgroundColor="#FFCC00" Grid.Row="1" FontSize="Small" TextColor="Black" Margin="20,0"/>
+
+                <Button Style="{StaticResource ButtonStyle}" Text="Skip" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End" FontSize="Small" Margin="0,0,0,0"
+                        BackgroundColor="Transparent" Clicked="Skip_Button_Clicked" TextColor="{StaticResource ColorDarkGray}"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,20,0,0" HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Text="{Binding CurrentData.Title,Mode=TwoWay}" Grid.Row="0" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                <Label Style="{StaticResource LabelStyle}" Text="{Binding CurrentData.Description,Mode=TwoWay}" Grid.Row="2" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="16" TextColor="{StaticResource ColorDarkGray}" Margin="20,0" />
+            </Grid>
+            <Grid Grid.Row="2" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <local:CustomFrame x:Name="test" BackgroundColor="white" HasShadow="False" CornerRadius="40,40,0,0" Grid.Row="0" Margin="0,0,0,-20">
+                    <controls:CarouselViewControl ItemsSource="{Binding MyItemsSource}" Position="{Binding CarouselPosition,Mode=TwoWay}"
+                                            ShowIndicators="True" IsSwipeEnabled="False"/>
+                </local:CustomFrame>
+                <local:CustomFrame Grid.Row="1" BackgroundColor="{StaticResource ColorYellow}" CornerRadius="40,40,0,0" HasShadow="False"  Padding="0">
+                    <Button Style="{StaticResource ButtonStyle}" BackgroundColor="Transparent" FontSize="{StaticResource MediumFontSize}" Padding="15" Text="{Binding ProceedText}" Command="{Binding ProceedCommand}"/>
+                </local:CustomFrame>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

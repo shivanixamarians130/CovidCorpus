@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CovidCorpus.Views.TestPage"
+             xmlns:local="clr-namespace:CovidCorpus.CustomControls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Red"
+             >
+    <ContentPage.Content>
+        <ContentView BackgroundColor="{StaticResource ColorLightGray}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="4.5*"/>
+                </Grid.RowDefinitions>
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.8*"/>
+                </Grid.RowDefinitions>
+                <local:CustomNavigationBar x:Name="navigationBar" LeftImage="ic_hambergur_menu" VerticalOptions="Start" BackgroundColor="Transparent"/>
+                <Image Grid.Column="1" Source="ic_ecllipse" VerticalOptions="Start" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Margin="0,-150,-100,0"/>
+                <Grid Grid.Row="1" Padding="20,0,20,0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="6.5*"/>
+                    </Grid.RowDefinitions>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Text="Overview" FontSize="Micro" TextColor="Black"/>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" FontSize="Large" VerticalTextAlignment="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="COVID" BackgroundColor="{StaticResource ColorYellow}" TextColor="Black"/>
+                                <Span Text=" - 19" BackgroundColor="Transparent" TextColor="Black"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Text="Tuesday, 23 April 2020, 9:30 PM" TextColor="{StaticResource ColorDarkGray}" FontSize="Small" VerticalTextAlignment="Start"/>
+                    <Frame Grid.Row="3" HasShadow="False" Padding="2" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="15" BackgroundColor="White">
+                        <Grid HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                          <Button FontFamily="ProductSans.ttf#Product Sans" Text="New Zealand" FontAttributes="Bold" TextColor="Black"  CornerRadius="15" Padding="0"  BackgroundColor="{StaticResource ColorYellow}" FontSize="Micro"/>
+                          <Button FontFamily="ProductSans.ttf#Product Sans" Grid.Column="1" Text="Global" FontAttributes="Bold" TextColor="Black" CornerRadius="15" Padding="0" BackgroundColor="White" FontSize="Micro"/>
+                        </Grid>
+                    </Frame>
+                    <StackLayout Grid.Row="4"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Frame  Padding="10,20,10,30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10">
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="ic_confirmed" HorizontalOptions="Start"/>
+                                <Label Style="{StaticResource LabelStyle}" Text="Confirmed" HorizontalTextAlignment="Start" TextColor="{StaticResource ColorDarkGray}" FontSize="Micro"/>
+                                <Label Style="{StaticResource LabelStyle}" Text="897" HorizontalTextAlignment="Start" TextColor="Black" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                            <Frame  Padding="10,20,10,30" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="ic_recovered" HorizontalOptions="Start"/>
+                                    <Label Style="{StaticResource LabelStyle}" Text="Recovered" TextColor="{StaticResource ColorDarkGray}" HorizontalTextAlignment="Start" FontSize="Micro"/>
+                                    <Label Style="{StaticResource LabelStyle}" Text="281" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                            <Frame  Padding="10,20,10,30" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                            <StackLayout Orientation="Vertical">
+                                <Image Source="ic_deceased" HorizontalOptions="Start"/>
+                                <Label Style="{StaticResource LabelStyle}" Text="Deceased" TextColor="{StaticResource ColorDarkGray}" HorizontalTextAlignment="Start" FontSize="Micro"/>
+                                <Label Style="{StaticResource LabelStyle}" Text="10" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+                <BoxView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                <Frame Grid.Row="2">
+                        <StackLayout>
+                        <Label Style="{StaticResource LabelStyle}" Text="Cases Overview Stats" FontSize="Medium" TextColor="Black"/>
+                        <Grid Margin="0,10,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Style="{StaticResource LabelStyle}" Text="Location" VerticalTextAlignment="Center" TextColor="{StaticResource ColorDarkGray}" FontSize="Micro" HorizontalTextAlignment="Start"/>
+                            <Label Style="{StaticResource LabelStyle}" Grid.Column="1" VerticalTextAlignment="Center" Text="Infections" TextColor="{StaticResource ColorPurple}" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            <Label Style="{StaticResource LabelStyle}" Grid.Column="2" VerticalTextAlignment="Center" Text="Death" TextColor="{StaticResource ColorLightRed}" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            <Label Style="{StaticResource LabelStyle}" Grid.Column="3" VerticalTextAlignment="Center" Text="Recovered" TextColor="{StaticResource ColorGreen}" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="4" Margin="0,10,0,0" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ColorLightGray}"/>
+                        </Grid>
+                        <ListView x:Name="listViewUpdates"  BackgroundColor="Transparent" SeparatorVisibility="None">
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="0,3,0,3">
+                                            <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Style="{StaticResource LabelStyle}" Text="{Binding Location}" TextColor="Black" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                                            <Label Style="{StaticResource LabelStyle}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Infections}" FontSize="Micro" TextColor="Black"/>
+                                            <Label Style="{StaticResource LabelStyle}" Grid.Column="2"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Death}" TextColor="Black" FontSize="Micro"/>
+                                            <Label Style="{StaticResource LabelStyle}" Grid.Column="3"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Recovered}" TextColor="Black" FontSize="Micro"/>
+                                        </Grid> 
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        </StackLayout>
+                    </Frame>
+            </Grid>
+        </ContentView>
+
+    </ContentPage.Content>
+</ContentPage>

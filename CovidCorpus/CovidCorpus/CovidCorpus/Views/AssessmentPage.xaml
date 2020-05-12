@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CovidCorpus.CustomControls"
+             xmlns:views="clr-namespace:CovidCorpus.Views"
+             xmlns:behavior="clr-namespace:CovidCorpus.Behaviours"
+             x:Class="CovidCorpus.Views.AssessmentPage"
+             NavigationPage.HasNavigationBar="False"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="StyleFrame">
+                <Setter Property="BorderColor" Value="{StaticResource ColorDarkGray}"/>
+                <Setter Property="CornerRadius" Value="20"/>
+            </Style>
+            <Style TargetType="Button" x:Key="StyleButton">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="{StaticResource ColorDarkGray}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <local:CustomNavigationBar x:Name="navigationBar"  RightImage="ic_cross" RightText="Exit" Margin="0,0,0,-15" VerticalOptions="Start" BackgroundColor="Transparent"/>
+                <Grid HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="2.5*"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar x:Name="progressTemp" Grid.Row="0" ProgressColor="{StaticResource ColorYellow}" Progress="0.2"  VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    <Label Grid.Row="1" Text="COVID-19" FontSize="Small"  TextColor="Black"  HorizontalTextAlignment="Start" VerticalTextAlignment="End"/>
+                    <Label Grid.Row="2" Text="Self Assessment" FontSize="Medium"  FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Start"/>
+
+                    <StackLayout Grid.Row="3" VerticalOptions="FillAndExpand" Padding="0,20,0,20" Spacing="20">
+                        <Frame   CornerRadius="10" x:Name="frameDescription" BackgroundColor="{StaticResource ColorWhiteSmoke}" VerticalOptions="Center">
+                            <Label TextColor="{StaticResource ColorDarkGray}" FontSize="Micro" BackgroundColor="{StaticResource ColorWhiteSmoke}" HorizontalTextAlignment="Start" Text="Please note that information from this form will be used for monitoring and management of the current health crisis and research in the fight against COVID-19."/>
+                        </Frame>
+                        <Grid>
+                            <ContentView x:Name="mainContentView"  BackgroundColor="Transparent" VerticalOptions="FillAndExpand"/>
+                        </Grid>
+
+                    </StackLayout>
+                    <StackLayout Grid.Row="4" Orientation="Horizontal" Spacing="10"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Button Text="Back" TextColor="Black" Clicked="Button_Clicked" BackgroundColor="{StaticResource ColorWhiteSmoke}" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+                        <Button x:Name="nextButton" Text="Next" TextColor="Black" Clicked="Button_Clicked_1" BackgroundColor="{StaticResource ColorYellow}" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </Grid>
+                <ContentView x:Name="contentView5" IsVisible="False" VerticalOptions="FillAndExpand">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.ColumnSpan="2" VerticalTextAlignment="Center" Text="Which of the following applies to you?" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                        <Button x:Name="btnTravelledWithIn14DaysContentView5"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StyleButton}" Text="Travelled internationally within the last 14 days" TextColor="Black"  FontSize="Small" BackgroundColor="Transparent" Clicked="CheckInteractionBtn_Clicked"/>
+                        <Button x:Name="btnRecentlyIntractedWithPositiveCasesContentView5" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource StyleButton}" Text="Recently interacted or currently live with someone who has tested positive For COVID-19" TextColor="Black" FontSize="Small" BackgroundColor="Transparent" Clicked="CheckInteractionBtn_Clicked"/>
+                        <Button x:Name="btnHealthCareWorkerContentView5" Grid.Row="3" Grid.Column="0" Style="{StaticResource StyleButton}" Text="Healthcare Worker" TextColor="Black"  FontSize="Small" BackgroundColor="Transparent" Clicked="CheckInteractionBtn_Clicked" />
+                        <Button x:Name="btnNoneOfTheAboveContentView5" Grid.Row="3" Grid.Column="1" Style="{StaticResource StyleButton}" Text="None of the above" TextColor="Black" FontSize="Small" BackgroundColor="Transparent" Clicked="CheckInteractionBtn_Clicked"/>
+                    </Grid>
+                </ContentView>
+                <ContentView x:Name="contentView2" Margin="0,20,0,0" IsVisible="False" VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="30">
+                        <Label Text="What is your age?" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                        <Frame Style="{StaticResource StyleFrame}" Padding="10">
+                            <Entry x:Name="entryAgeContentView2" Placeholder="Enter your age for ex: 42" Keyboard="Numeric" TextChanged="EntryAgeContentView2_TextChanged">
+                                <Entry.Behaviors>
+                                    <behavior:NumericValidationBehavior />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Frame>
+                    </StackLayout>
+                </ContentView>
+                <ContentView x:Name="contentview4" IsVisible="False" VerticalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.ColumnSpan="2" FontAttributes="Bold" Text="Have you ever had any of the following?" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Start"/>
+                        <Button x:Name="btnDiabetesContentView4"  Grid.Row="1" Grid.Column="0" Text="Diabetes" Style="{StaticResource StyleButton}"  Clicked="DiseaseBtn_Clicked"/>
+                        <Button x:Name="btnHyperTntnContentView4"  Grid.Row="1" Grid.Column="1" Text="Hypertension" Style="{StaticResource StyleButton}" Clicked="DiseaseBtn_Clicked"/>
+                        <Button x:Name="btnLungDiseaseContentView4"  Grid.Row="2" Grid.Column="0" Text="Lung disease" Style="{StaticResource StyleButton}" Clicked="DiseaseBtn_Clicked"/>
+                        <Button x:Name="btnHrtDiseaseContentView4"  Grid.Row="2" Grid.Column="1" Text="Heart disease" Style="{StaticResource StyleButton}" Clicked="DiseaseBtn_Clicked"/>
+                        <Button x:Name="btnNoneOfTheAboveContentView4"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="None of the above" Style="{StaticResource StyleButton}" CommandParameter="NoneOfTheAbove" Clicked="DiseaseBtn_Clicked"/>
+                    </Grid>
+                </ContentView>
+                <ContentView x:Name="contentview1" IsVisible="False" VerticalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Text="What is your gender?" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Start"/>
+                        <Button x:Name="btnMaleContentView1"  Grid.Row="1" Grid.Column="0" Text="Male" Style="{StaticResource StyleButton}" Clicked="Gendertn_Clicked"/>
+                        <Button x:Name="btnFemaleContentView1" Grid.Row="1" Grid.Column="1" Text="Female" Style="{StaticResource StyleButton}" Clicked="Gendertn_Clicked"/>
+                        <Button x:Name="btnTrnsGndrContentView1" Grid.Row="2" Grid.Column="0" Text="Transgender" Style="{StaticResource StyleButton}" Clicked="Gendertn_Clicked"/>
+                        <Button x:Name="btnPrfrNtToSayContentView1" Grid.Row="2" Grid.Column="1"  Text="Prefer not to say" Style="{StaticResource StyleButton}" Clicked="Gendertn_Clicked"/>
+                    </Grid>
+                </ContentView>
+                <ContentView x:Name="contentview3" IsVisible="False" VerticalOptions="FillAndExpand" >
+                    <Grid HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Are you experiencing any of the following symptoms? " Margin="0,0,0,15" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                        <Button x:Name="btnFeverContentView3" Grid.Row="1" Grid.Column="0" Text="Fever" Style="{StaticResource StyleButton}" Clicked="SymptomsBtn_Clicked"/>
+                        <Button x:Name="btnCoghContentView3" Grid.Row="1" Grid.Column="1" Text="Cough" Style="{StaticResource StyleButton}" Clicked="SymptomsBtn_Clicked"/>
+                        <Button x:Name="btnDifficultyInBreathingContentView3" Grid.Row="2" Grid.Column="0" Text="Difficulty in breathing" Style="{StaticResource StyleButton}" Clicked="SymptomsBtn_Clicked"/>
+                        <Button x:Name="btnNoneOfTheAboveContentView3" Grid.Row="2" Grid.Column="1" Text="None of the above" Style="{StaticResource StyleButton}" Clicked="SymptomsBtn_Clicked" CommandParameter="NoneOfTheAbove"/>
+                    </Grid>
+                </ContentView>
+            </StackLayout>
+            <ActivityIndicator x:Name="activityIndicator" HorizontalOptions="Center" VerticalOptions="Center" Color="Black" IsRunning="True" IsVisible="False"/>
+        </Grid>
+                 
+        
+    </ContentPage.Content>
+</ContentPage>
+    
+    

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CovidCorpus.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ColorYellow">#ffcc00</Color>
+            <Color x:Key="ColorDarkGray">#787878</Color>
+            <Color x:Key="ColorLightGray">#F0F0F0</Color>
+            <Color x:Key="ColorLightYellow">#ffe680</Color>
+            <Color x:Key="ColorGreen">#00B87F</Color>
+            <Color x:Key="ColorPurple">#6B5CE8</Color>
+            <Color x:Key="ColorLightRed">#FF6B82</Color>
+            <Color x:Key="ColorWhiteSmoke">#faf6f6</Color>
+            <Color x:Key="ColorTeal">#02baba</Color>
+            <Color x:Key="ColorSocialDistancingBackgroundColor">#fffbed</Color>
+            <Color x:Key="ColorSelAssessmentTestBackgroundColor">#fff3f4</Color>
+            <Color x:Key="ColorRegularUpdatesBackgroundColor">#edfafa</Color>
+            <x:Double x:Key="LargeFontSize">22</x:Double>
+            <x:Double x:Key="XLargeFontSize">26</x:Double>
+            <x:Double x:Key="MediumFontSize">18</x:Double>
+            <x:Double x:Key="SmallFontSize">14</x:Double>
+            <x:Double x:Key="MiniFontSize">3</x:Double>
+            <Style TargetType="Label" x:Key="LabelStyle">
+                <Setter Property="FontFamily" Value="ProductSans.ttf#Product Sans"/>
+            </Style>
+            
+            <!--<Style TargetType="x:String" x:Key="LabelStyle">
+                <Setter Property="FontFamily" Value="ProductSans.ttf#Product Sans"/>
+            </Style>-->
+            <Style TargetType="Button" x:Key="ButtonStyle">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorYellow}"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="FontFamily" Value="Assets.ProductSans.ttf"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

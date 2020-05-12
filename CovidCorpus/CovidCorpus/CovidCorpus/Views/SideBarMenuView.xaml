@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CovidCorpus.Views.SideBarMenuView"
+             BackgroundColor="{StaticResource ColorYellow}"
+             Padding="20,0,0,0"
+             NavigationPage.HasNavigationBar="False"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true"
+             >
+  <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Image  Source="ic_logo" HorizontalOptions="Start" VerticalOptions="Center"/>
+        <StackLayout x:Name="listViewMenuItems" Grid.Row="1"  Margin="0,-20,0,0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                        <Grid>
+                            <Frame BackgroundColor="Transparent" HasShadow="False" Padding="0,20,0,20">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding MenuImage}"  VerticalOptions="Center" HorizontalOptions="Start"/>
+                                    <Label Style="{StaticResource LabelStyle}" Text="{Binding MenuTitle}"  Margin="10,0,0,0" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="{StaticResource SmallFontSize}"/>
+                                </StackLayout>
+                            </Frame>
+                          <Button FontFamily="ProductSans.ttf#Product Sans" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" CommandParameter="{Binding MenuTitle}" Clicked="Button_Clicked"/>
+
+                        </Grid>
+
+
+
+                    </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Text="Ver. 24.1&#10;©2020 Successive Tech" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

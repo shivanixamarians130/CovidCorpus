@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:local="clr-namespace:CovidCorpus.CustomControls"
+NavigationPage.HasNavigationBar="False"
+             xmlns:custom="clr-namespace:CovidCorpus.CustomControls"
+             xmlns:behavior="clr-namespace:CovidCorpus.Behaviours"
+             x:Class="CovidCorpus.Views.RegistrationPage"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="frameOTP">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HeightRequest" Value="63"/>
+                <Setter Property="BorderColor" Value="LightGray"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="styleLabelOTP">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="FontFamily" Value="ProductSans.ttf#Product Sans"/>
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <x:String x:Key="Verification">Verification</x:String>
+            <x:String x:Key="EnterNumber">Enter 4 digit number sent to</x:String>
+            <x:String x:Key="OtpNotReceived">Didn't Receive?</x:String>
+            <x:String x:Key="VerifyNow">Verify Now</x:String>
+            <x:String x:Key="Resend">Re-send in</x:String>
+            <x:String x:Key="EnterMobileNumber">Enter Mobile No.</x:String>
+            <x:String x:Key="SendOTP">We will send an OTP to your</x:String>
+            <x:String x:Key="Mobile Number">mobile number</x:String>
+            <x:String x:Key="Submit">Submit</x:String>
+          
+          
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <local:CustomNavigationBar x:Name="navBar" Title="Back" LeftImage="ic_left_arrow" BackgroundColor="Transparent"/>
+                <ContentView x:Name="contentViewEnterOtp" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="False">
+                    <ScrollView>
+                        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10" AbsoluteLayout.LayoutBounds="0.5,0.3,0.85,0.6" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+                                <Label Style="{StaticResource LabelStyle}" Text="{StaticResource Verification}" TextColor="Black"  FontSize="{StaticResource LargeFontSize}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Text="{StaticResource EnterNumber}" FontSize="{StaticResource MediumFontSize}"  HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <Label Style="{StaticResource LabelStyle}" Grid.Row="2"  TextColor="Black" FontSize="{StaticResource LargeFontSize}" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding Source={x:Reference entyEnterNumber}  ,Path=Text.Length}" Value="10" TargetType="Label">
+                                            <Setter Property="Text" Value="{Binding Source={x:Reference entyEnterNumber}  ,Path=Text}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Grid BackgroundColor="Transparent" VerticalOptions="Start">
+
+                                    <FlexLayout Grid.Row="0" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="0,20,0,0" JustifyContent="SpaceEvenly"  Direction="Row">
+                                        <Frame Style="{StaticResource frameOTP}"  BackgroundColor="{StaticResource ColorYellow}">
+                                            <Label x:Name="lblOtpDigit1" Style="{StaticResource styleLabelOTP}" BackgroundColor="Transparent"/>
+                                        </Frame>
+                                        <Frame Grid.Column="1" Style="{StaticResource frameOTP}" BackgroundColor="{StaticResource ColorYellow}">
+                                            <Label x:Name="lblOtpDigit2" Style="{StaticResource styleLabelOTP}"/>
+                                        </Frame>
+                                        <Frame Grid.Column="2"  Style="{StaticResource frameOTP}" BackgroundColor="{StaticResource ColorYellow}">
+                                            <Label x:Name="lblOtpDigit3" Style="{StaticResource styleLabelOTP}"/>
+                                        </Frame>
+                                        <Frame Grid.Column="3" Style="{StaticResource frameOTP}" BackgroundColor="{StaticResource ColorYellow}">
+                                            <Label x:Name="lblOtpDigit4" Style="{StaticResource styleLabelOTP}"/>
+                                        </Frame>
+                                    </FlexLayout>
+                                    <custom:CustomEntry x:Name="UpperInvisiblEntry" BackgroundColor="Transparent" TextColor="Transparent" Keyboard="Numeric" IsVisible="True" TextChanged="UpperInvisiblEntry_TextChanged" >
+                                        <custom:CustomEntry.Behaviors>
+                                            <behavior:NumericValidationBehavior />
+                                        </custom:CustomEntry.Behaviors>
+                                    </custom:CustomEntry>
+                                </Grid>
+
+
+                                <Label Style="{StaticResource LabelStyle}" Grid.Row="4" HorizontalOptions="Center" Margin="0,20" HorizontalTextAlignment="Center" FontSize="{StaticResource SmallFontSize}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{StaticResource OtpNotReceived}" TextColor="LightGray"/>
+                                            <Span x:Name="spannableStringTimerText" Text=" Re-send in 01:25" TextColor="Black"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Button FontFamily="ProductSans.ttf#Product Sans" Grid.Row="5" Text="{StaticResource VerifyNow}" IsEnabled="False" Clicked="VerifyNow_Button_Clicked"  FontSize="{StaticResource MediumFontSize}" TextColor="Black" FontAttributes="Bold" BackgroundColor="{StaticResource ColorYellow}" HeightRequest="50" HorizontalOptions="FillAndExpand" CornerRadius="25" Padding="0" Margin="20,0">
+                                    <Button.Triggers>
+                                        <MultiTrigger TargetType="Button">
+                                            <MultiTrigger.Conditions>
+                                                <BindingCondition Binding="{Binding Source={x:Reference lblOtpDigit1},
+                                   Path=Text.Length}"
+                               Value="1" />
+                                                <BindingCondition Binding="{Binding Source={x:Reference lblOtpDigit2},
+                                   Path=Text.Length}"
+                               Value="1" />
+                                                <BindingCondition Binding="{Binding Source={x:Reference lblOtpDigit3},
+                                   Path=Text.Length}"
+                               Value="1" />
+                                                <BindingCondition Binding="{Binding Source={x:Reference lblOtpDigit4},
+                                   Path=Text.Length}"
+                               Value="1" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="True" />
+
+                                        </MultiTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </StackLayout>
+
+                        </AbsoluteLayout>
+                    </ScrollView>
+                </ContentView>
+                <ContentView x:Name="contentViewEnterNumber" IsVisible="True">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0.5,0.3,0.8,0.5" AbsoluteLayout.LayoutFlags="All">
+                            <Label Style="{StaticResource LabelStyle}" Text="{StaticResource EnterMobileNumber}"  HorizontalOptions="Center" FontSize="{StaticResource LargeFontSize}" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Style="{StaticResource LabelStyle}" Text="We will send an OTP to your&#10;mobile number"  Margin="0,0,0,0" HorizontalOptions="Center" FontSize="{StaticResource MediumFontSize}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="{StaticResource ColorDarkGray}"/>
+                            <Frame Padding="20" HorizontalOptions="FillAndExpand" Margin="0,45,0,0">
+                                <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" >
+                                    <Frame Padding="15,0,15,0"  HorizontalOptions="FillAndExpand" HasShadow="True" HeightRequest="50" CornerRadius="25" >
+                                        <StackLayout Orientation="Horizontal"   HorizontalOptions="FillAndExpand">
+                                            <Image Source="ic_country_flag" HorizontalOptions="Start"/>
+                                            <Entry x:Name="entyEnterNumber" FontFamily="ProductSans.ttf#Product Sans" Keyboard="Numeric" Placeholder="Enter Number" Text="" HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="{StaticResource MediumFontSize}" FontAttributes="Bold" TextChanged="EntyEnterNumber_TextChanged"/>
+                                            <Image Source="ic_tick" IsVisible="False" HorizontalOptions="EndAndExpand">
+                                                <Image.Triggers>
+                                                    <DataTrigger Binding="{Binding Source={x:Reference entyEnterNumber}  ,Path=Text.Length}" Value="10" TargetType="Image">
+                                                        <Setter Property="IsVisible" Value="True"/>
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Button FontFamily="ProductSans.ttf#Product Sans" IsEnabled="False" Text="{StaticResource Submit}" FontSize="{StaticResource MediumFontSize}" Clicked="Submit_Button_Clicked" HorizontalOptions="FillAndExpand" FontAttributes="Bold" HeightRequest="50" CornerRadius="25" Style="{StaticResource ButtonStyle}">
+                                        <Button.Triggers>
+                                            <DataTrigger Binding="{Binding Source={x:Reference entyEnterNumber}, Path=Text.Length}" Value="10" TargetType="Button">
+                                                <Setter Property="IsEnabled" Value="True"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </AbsoluteLayout>
+
+                </ContentView>
+            </StackLayout>
+            <ActivityIndicator x:Name="activityIndicator" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False" IsRunning="True"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

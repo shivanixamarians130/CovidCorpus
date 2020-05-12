@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CovidCorpus.Views.HomePage"
+             xmlns:local="clr-namespace:CovidCorpus.CustomControls"
+             xmlns:views="clr-namespace:CovidCorpus.Views"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+    ios:Page.UseSafeArea="true"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <views:SideBarMenuView x:Name="sideBarMenuContentView"/>
+            <Grid x:Name="gridParent">
+                <BoxView x:Name="frameShadow" CornerRadius="40" BackgroundColor="{StaticResource ColorLightYellow}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="-4,0,0,0"/>
+                <Frame x:Name="contentViewCovidUpdates" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" HasShadow="False">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="6*"/>
+                        </Grid.RowDefinitions>
+                        <Frame  Padding="0" HasShadow="False">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <local:CustomNavigationBar x:Name="navigationBar"  BackgroundColor="{StaticResource ColorWhiteSmoke}" LeftImage="ic_hambergur_menu" RightImage="ic_notification" />
+                                <local:CustomFrame Grid.Row="1" CornerRadius="0,0,40,40" Padding="0" Margin="0,-6,0,0" BackgroundColor="{StaticResource ColorWhiteSmoke}">
+                                    <Grid  Padding="20,0,20,0" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="4*"/>
+                                            <RowDefinition Height="3*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Frame x:Name="frameStatus" Grid.Row="0" CornerRadius="10" Padding="5" Margin="0,6,0,0" HeightRequest="30"  HorizontalOptions="Start" BackgroundColor="{StaticResource ColorTeal}">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="0" BackgroundColor="Transparent">
+                                                <Label x:Name="lblStatus"  Style="{StaticResource LabelStyle}" Text="Low Risk       "  HorizontalOptions="Start" VerticalTextAlignment="Center" HeightRequest="16" HorizontalTextAlignment="Center" TextColor="White" FontSize="{StaticResource SmallFontSize}"/>
+                                                <Image x:Name="imageStatus" Source="ic_white_tick"  HorizontalOptions="End" VerticalOptions="Center" HeightRequest="20"/>
+                                            </StackLayout>
+                                        </Frame>
+                                        <Label Style="{StaticResource LabelStyle}" Grid.Row="1"  VerticalTextAlignment="Center" Text="Based on the inputs filled in Self&#10;Assessment form, you are at low risk&#10;of COVID-19" LineBreakMode="WordWrap" TextColor="{StaticResource ColorDarkGray}" FontSize="Small"/>
+                                        <StackLayout Grid.Row="2"  Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Image Source="ic_phone"/>
+                                            <Image Source="ic_message"/>
+                                        </StackLayout>
+                                        <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent"/>
+                                    </Grid>
+
+                                </local:CustomFrame>
+
+
+                            </Grid>
+                        </Frame>
+                      
+                        <Grid Grid.Row="1" Padding="20,0,20,0" BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Label Style="{StaticResource LabelStyle}" Text="We recommend these steps to be&#10;protected from COVID-19" LineBreakMode="WordWrap" TextColor="Black" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="Small"/>
+                            <Frame Grid.Row="1" Padding="10" BackgroundColor="{StaticResource ColorSocialDistancingBackgroundColor}">
+                                <Grid  BackgroundColor="{StaticResource ColorSocialDistancingBackgroundColor}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Image Source="ic_one" VerticalOptions="Center"/>
+                                        <Label Style="{StaticResource LabelStyle}" Text="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                                    </Grid>
+                                    <Image Grid.Column="1" Source="ic_social_distancing" VerticalOptions="Center"/>
+                                    <Label Style="{StaticResource LabelStyle}" Grid.Column="2" Text="Maintain Social Distance" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
+                                </Grid>
+                            </Frame>
+                            <Frame Grid.Row="2" Margin="0,4,0,0" BackgroundColor="{StaticResource ColorSelAssessmentTestBackgroundColor}" Padding="10">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Image Source="ic_one" VerticalOptions="Center"/>
+                                        <Label Style="{StaticResource LabelStyle}" Text="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                                    </Grid>
+                                    <Image Grid.Column="1" Source="ic_self_assessment_2" VerticalOptions="Center"/>
+
+                                    <Label Style="{StaticResource LabelStyle}" Grid.Column="2" Text="Take Self Assessment Test" LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
+                                </Grid>
+                            </Frame>
+                            <Frame Grid.Row="3" Margin="0,4,0,0" BackgroundColor="{StaticResource ColorRegularUpdatesBackgroundColor}" Padding="10">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Image Source="ic_one" VerticalOptions="Center"/>
+                                        <Label Style="{StaticResource LabelStyle}" Text="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                                    </Grid>
+                                    <Image Grid.Column="1" Source="ic_check_regular_updates" VerticalOptions="Center"/>
+                                    <Label Style="{StaticResource LabelStyle}" Grid.Column="2" Text="Check app for regular updates " LineBreakMode="WordWrap" VerticalTextAlignment="Center" FontSize="Small" TextColor="Black"/>
+                                </Grid>
+                            </Frame>
+
+                            <local:CustomFrame Grid.Row="4" BackgroundColor="#FFCC00" CornerRadius="40,40,0,0"   Margin="-20,6,-20,0" Padding="0">
+                                <Button BackgroundColor="Transparent" Padding="15" Text="Test Again" FontAttributes="Bold" FontSize="{StaticResource MediumFontSize}"/>
+                            </local:CustomFrame>
+                        </Grid>
+                        <ActivityIndicator x:Name="activityIndicator" Grid.RowSpan="2" BackgroundColor="Transparent" IsRunning="True" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+           
+        </Grid>
+       
+
+    </ContentPage.Content>
+</ContentPage>
